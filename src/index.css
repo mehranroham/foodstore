@@ -1,3 +1,70 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Dana-Medium';
+    src: url(/public/fonts/Dana/Dana-Medium.woff2) format('woff2');
+  }
+  @font-face {
+    font-family: 'Dana-Regular';
+    src: url(/public/fonts/Dana/Dana-Regular.woff2) format('woff2');
+  }
+  @font-face {
+    font-family: 'Dana-Bold';
+    src: url(/public/fonts/Dana/Dana-Bold.woff2) format('woff2');
+  }
+  @font-face {
+    font-family: 'Dana-Light';
+    src: url(/public/fonts/Dana/Dana-Light.woff2) format('woff2');
+  }
+  @font-face {
+    font-family: 'Morabba-Medium';
+    src: url(/public/fonts/Morabba/Morabba-Medium.woff2) format('woff2');
+  }
+  @font-face {
+    font-family: 'Morabba-Bold';
+    src: url(/public/fonts/Morabba/Morabba-Bold.woff2) format('woff2');
+  }
+  @font-face {
+    font-family: 'Morabba-Regular';
+    src: url(/public/fonts/Morabba/Morabba-Regular.woff2) format('woff2');
+  }
+  @font-face {
+    font-family: 'Morabba-Light';
+    src: url(/public/fonts/Morabba/Morabba-Light.woff2) format('woff2');
+  }
+  @font-face {
+    font-family: 'Poppins-Medium';
+    src: url(/public/fonts/Poppins/Poppins-Medium.ttf) format('woff2');
+  }
+  @font-face {
+    font-family: 'Poppins-Regular';
+    src: url(/public/fonts/Poppins/Poppins-Regular.ttf) format('woff2');
+  }
+  @font-face {
+    font-family: 'Poppins-Bold';
+    src: url(/public/fonts/Poppins/Poppins-Bold.ttf) format('woff2');
+  }
+  @font-face {
+    font-family: 'Poppins-Light';
+    src: url(/public/fonts/Poppins/Poppins-Light.ttf) format('woff2');
+  }
+  @font-face {
+    font-family: 'IRANSansX-Medium';
+    src: url(/public/fonts/IranSansX/IRANSansX-Medium.woff2) format('woff2');
+  }
+  @font-face {
+    font-family: 'IRANSansX-Regular';
+    src: url(/public/fonts/IranSansX/IRANSansX-Regular.woff2) format('woff2');
+  }
+  @font-face {
+    font-family: 'IRANSansX-Bold';
+    src: url(/public/fonts/IranSansX/IRANSansX-Bold.woff2) format('woff2');
+  }
+  @font-face {
+    font-family: 'IRANSansX-Light';
+    src: url(/public/fonts/IranSansX/IRANSansX-Light.woff2) format('woff2');
+  }
+}
