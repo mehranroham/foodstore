@@ -1,8 +1,8 @@
 import { CircleUser, LogOutIcon, ShoppingBag } from 'lucide-react';
 import { useKindeAuth } from '@kinde-oss/kinde-auth-react';
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
 import Button from '../components/ui/Button';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
   const { login, register, logout, user, isLoading, isAuthenticated } =
@@ -21,25 +21,17 @@ const Header = () => {
     login();
   };
 
-  useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
-      localStorage.removeItem('kinde_refresh_token');
-      logout();
-    }
-  }, [isAuthenticated]);
+  const count = useSelector((state) => {
+    return state.shop.orders;
+  });
 
-  // if (!isLoading) {
-  //   let t;
-  //   const get = async () => {
-  //     t = await getToken();
-  //     console.log(t);
-  //   };
-  //   get();
+  let number = 0;
 
-  //   setTimeout(() => {
-  //     get();
-  //   }, 70000);
-  // }
+  if (count.length) {
+    number = count.reduce((prev, curr) => {
+      return prev + curr.quantity;
+    }, 0);
+  }
 
   return (
     <nav className='sticky w-full h-[70px] px-16 bg-init-4 text-stone-900 grid grid-cols-3 font-Morabba-Medium text-lg top-0 right-0 shadow-xl z-10'>
@@ -104,11 +96,18 @@ const Header = () => {
         </li>
       </ul>
 
-      <div className='flex items-center gap-4 justify-end'>
+      <div className='relative flex items-center gap-4 justify-end'>
+        {number > 0 && (
+          <span className='bg-init-3 pt-0.5 text-stone-200 absolute -left-[19px] top-1.5 rounded-xl w-6 h-6 flex justify-center items-center font-Poppins-Medium text-sm'>
+            {number}
+          </span>
+        )}
         <span className='font-Poppins-Medium text-3xl flex items-center cursor-pointer'>
           FoodStore
         </span>
-        <ShoppingBag className='cursor-pointer' size={34} />
+        <Link to='/shop/cart'>
+          <ShoppingBag className='cursor-pointer' size={34} />
+        </Link>
       </div>
     </nav>
   );

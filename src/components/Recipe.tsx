@@ -1,14 +1,34 @@
-import { Link } from 'react-router-dom';
-import Recipes from '../models/RecipesModel';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
-const Recipe = ({ id, name, recipe }: Recipes) => {
+// state type
+import { combineReducers } from '@reduxjs/toolkit';
+const rootReducer = combineReducers({});
+export type IRootState = ReturnType<typeof rootReducer>;
+
+const Recipe = () => {
+  const { recipeId } = useParams();
+
+  const recipes = useSelector((state: IRootState) => {
+    return state.recipe.recipes;
+  });
+
+  const selected = recipes.find((item) => {
+    return item.id === +recipeId!;
+  });
+
   return (
-    <li>
-      <Link className='flex flex-col gap-4' to={`recipes/${id}`}>
-        <p className='font-Morabba-Bold text-xl'>{name}</p>
-        <p>{recipe}</p>
-      </Link>
-    </li>
+    <div className='flex flex-col gap-8'>
+      <p className='text-2xl font-Morabba-Bold bg-init-4 py-1.5 px-4 text-stone-900 rounded-xl'>
+        {selected.name}
+      </p>
+      <img
+        className='w-[400px] h-[300px] object-cover rounded-xl mx-auto'
+        src='/logo.jpg'
+        alt='food'
+      />
+      <p>{selected.recipe}</p>
+    </div>
   );
 };
 

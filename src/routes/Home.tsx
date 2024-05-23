@@ -1,4 +1,14 @@
+import { useInView } from 'framer-motion';
+import { useRef } from 'react';
+
 const Home = () => {
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: true, amount: 0.4 });
+
+  if (isInView) {
+    console.log('yes');
+  }
+
   return (
     <div className='w-full'>
       <div className='absolute top-[70px] inset-x-0 w-full h-[calc(100vh_-_70px)] bg-gradient-to-br from-purple-500 to-purple-950 flex flex-col gap-24 items-center justify-center font-Morabba-Bold text-stone-900'>
@@ -15,7 +25,7 @@ const Home = () => {
           <p>تلفن: 22739844-021</p>
         </div>
       </div>
-      <div className='mt-[calc(100vh_-_70px)]'>
+      <div ref={containerRef} className='mt-[calc(100vh_-_70px)]'>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor unde
         laboriosam quis laudantium quas quidem, dolores amet numquam voluptates
         vel. Laborum praesentium mollitia possimus eum quia quidem, numquam quos

@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import Button from './ui/Button';
+import { useDispatch } from 'react-redux';
+import { shopActions } from '../store/shop';
 
 const Food = ({
   food,
@@ -19,6 +21,13 @@ const Food = ({
     style: 'currency',
   }).format(food.price * Math.floor(Math.random() * 10 + 10));
 
+  const dispatch = useDispatch();
+
+  const addToCartHandler = (event, id) => {
+    event.preventDefault();
+    dispatch(shopActions.addToCart(id));
+  };
+
   return (
     <li>
       <Link
@@ -29,7 +38,9 @@ const Food = ({
         <p className='font-Poppins-Medium text-lg'>{name}</p>
         <p className='line-clamp-3 px-3 '>{food.description}</p>
         <p>{price}</p>
-        <Button>افزودن به سبد خرید</Button>
+        <Button onClick={(e) => addToCartHandler(e, food.id)}>
+          افزودن به سبد خرید
+        </Button>
       </Link>
     </li>
   );
