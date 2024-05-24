@@ -3,6 +3,7 @@ import Button from './ui/Button';
 import { useDispatch } from 'react-redux';
 import { shopActions } from '../store/shop';
 import { priceFormatter } from '../utils/priceformatter';
+import { motion } from 'framer-motion';
 
 const Food = ({
   food,
@@ -27,7 +28,7 @@ const Food = ({
   };
 
   return (
-    <li>
+    <motion.li whileHover={{ scale: 1.03 }} transition={{ duration: 0.5 }}>
       <Link
         to={`${food.id}`}
         className='w-full h-auto bg-init-4 rounded-xl overflow-hidden flex flex-col gap-4 items-center text-stone-900 cursor-pointer pb-5'
@@ -40,7 +41,7 @@ const Food = ({
           افزودن به سبد خرید
         </Button>
       </Link>
-    </li>
+    </motion.li>
   );
 };
 

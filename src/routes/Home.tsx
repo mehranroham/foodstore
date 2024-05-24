@@ -1,6 +1,7 @@
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
+import Accordion from '../components/Accordion';
 
 const Home = () => {
   const containerRef = useRef(null);
@@ -31,17 +32,37 @@ const Home = () => {
         </div>
       </div>
       <div ref={containerRef} className='mt-[calc(100vh_-_70px)]'>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor unde
-        laboriosam quis laudantium quas quidem, dolores amet numquam voluptates
-        vel. Laborum praesentium mollitia possimus eum quia quidem, numquam quos
-        est minima labore enim deleniti dolores natus earum, architecto tempora
-        ipsa ut exercitationem facere illum dolorum? Quisquam voluptate, ipsam
-        labore repellat architecto, at veritatis tempora libero, perferendis
-        delectus laboriosam? Maiores explicabo unde laborum iste molestiae harum
-        dolorem totam voluptas mollitia ab, velit doloremque sequi pariatur quae
-        quidem quos modi eos labore enim incidunt debitis sed. Esse fugit
-        suscipit consectetur, vitae a hic eos voluptatem obcaecati, iusto
-        facere, maiores harum excepturi accusantium.
+        <h2 className='font-Morabba-Bold text-xl border-b-2 pb-2 mb-10'>
+          سوالات متداول
+        </h2>
+        <ul className='flex flex-col gap-5'>
+          <Accordion
+            title='پیک هم دارید برای تحویل غذا'
+            description='بله پیک ویژه به صورت رایگان آماده خدمت رسانی به شما می باشد'
+          />
+          <Accordion
+            title='چقدر طول میکشه تا غذا به دستمون برسه'
+            description='در کمتر از 30 دقیقه غذا به دستتون میرسه'
+          />
+          <Accordion
+            title='فود استوری چجوری به وجود اومده'
+            description='فود استور یکی از آن رستوران‌هاییست که در ساختن کمپین‌های تبلیغاتی از همه چیز خود مایه می‌گذارد و هنگامی که علناً تصمیم به رقابت با یک رستوران دیگر می‌گیرد هیچ چیز جلودارش نیست. به همین دلیل زمانی که آنها تصمیم به رقابت با رستوران ساب‌وی گرفتند، مانند ساب‌وی یک ساندویچ فر پز به منوی خود اضافه کردند. امّا این همه ماجرا نیست. فود استور برای بالا بردن فروش خود و سروصدا کردن در بازار فست فود اعلام کرد که به هرکسی که نامش جرد باشد یک ساندویچ فر پز مجانی می‌دهد.'
+          />
+          <Accordion
+            title='آدرستون کجاست'
+            description='آدرس: تجریش، ضلع شمال شرقی، پلاک 115
+
+            تلفن: 22739844-021'
+          />
+          <Accordion
+            title='غذای ایرانی دارید یا فست فود؟'
+            description='انواع متنوعی از غذا ها در فود استور تهیه میشه که این دو هم شامل میشن'
+          />
+          <Accordion
+            title='از کجا میشه به شما اعتماد کرد'
+            description='با بیش از 20 سال سابقه میتونید نظرات مختلف مردم درباره فود استور رو در برنامه هایی نظیر اسنپ فود مطالعه کنید'
+          />
+        </ul>
       </div>
     </div>
   );

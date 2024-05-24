@@ -19,8 +19,8 @@ const Button = ({ children, className: classname, onClick }: Props) => {
 
   return (
     <motion.button
-      whileHover={{ scale: 1.1, backgroundColor: 'rgb(0, 41, 107)' }}
-      transition={{ duration: 1 }}
+      whileHover={{ scale: 1.05, backgroundColor: 'rgb(0, 41, 107)' }}
+      transition={{ duration: 0.5 }}
       onClick={onClick}
       className={classes}
     >

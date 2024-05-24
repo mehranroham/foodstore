@@ -3,6 +3,7 @@ import { FOODS } from '../data/Foods';
 
 const initialState = {
   foods: FOODS,
+  filtredData: FOODS,
   orders: [],
 };
 
@@ -41,6 +42,23 @@ const shopReducer = createSlice({
       } else {
         state.orders = newOrders;
       }
+    },
+    filterHandler(state, action) {
+      const filteredFoods = state.foods
+        .filter((food) => {
+          return food.name
+            .toLocaleLowerCase()
+            .includes(action.payload.searchInput.toLocaleLowerCase());
+        })
+        .filter((food) => {
+          if (action.payload.category === 'all') {
+            return food;
+          } else {
+            return food.category === action.payload.category;
+          }
+        });
+
+      state.filtredData = filteredFoods;
     },
   },
 });
