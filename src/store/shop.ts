@@ -28,7 +28,6 @@ const shopReducer = createSlice({
     },
     removeFromCart(state, action) {
       const removedFood = state.orders.find((order) => {
-        console.log(order.id);
         return order.id === action.payload;
       });
 

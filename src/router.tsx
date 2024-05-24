@@ -11,6 +11,7 @@ import Contact from './routes/Contact';
 import About from './routes/About';
 import Panel from './routes/Panel';
 import EditRecipe from './routes/EditRecipe';
+import Checkout from './routes/Checkout';
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,7 @@ export const router = createBrowserRouter([
       { path: 'recipes/:recipeId', element: <Recipe /> },
       { path: 'recipes/new', element: <NewRecipe /> },
       { path: 'recipes/edit/:recipeId', element: <EditRecipe /> },
+      { path: 'checkout', element: <Checkout /> },
       { path: 'panel', element: <Panel /> },
       { path: 'contact', element: <Contact /> },
       { path: 'about', element: <About /> },

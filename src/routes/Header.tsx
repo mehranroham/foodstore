@@ -121,7 +121,7 @@ const Header = () => {
 
       <div className='relative flex items-center md:gap-3 gap-2 justify-end col-span-2 lg:col-span-1'>
         {number > 0 && (
-          <span className='bg-init-3 pt-0.5 text-stone-200 absolute -left-[19px] top-1.5 rounded-xl w-6 h-6 flex justify-center items-center font-Poppins-Medium text-sm'>
+          <span className='bg-init-3 pt-0.5 text-stone-200 absolute left-[26px] top-[1px] rounded-xl w-6 h-6 flex justify-center items-center font-Poppins-Medium text-sm'>
             {number}
           </span>
         )}
@@ -132,7 +132,7 @@ const Header = () => {
           FoodStore
         </Link>
         <Link to='/shop/cart'>
-          <ShoppingBag className='cursor-pointer' size={34} />
+          <ShoppingBag className='cursor-pointer' size={35} />
         </Link>
       </div>
     </nav>

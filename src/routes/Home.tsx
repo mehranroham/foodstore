@@ -6,7 +6,7 @@ const Home = () => {
     <div className='w-full'>
       <div
         className='absolute lg:top-[70px] top-[60px] inset-x-0 w-full lg:h-[calc(100vh_-_70px)]
-      h-[calc(100vh_-_60px)]  bg-gradient-to-br from-init-3 to-init-1 flex flex-col gap-24 items-center justify-center font-Morabba-Bold text-stone-900 px-5 '
+      h-[calc(100vh_-_60px)]  bg-gradient-to-br from-init-3 to-init-1 flex flex-col gap-24 items-center justify-center font-Morabba-Bold text-stone-900 px-5'
       >
         <motion.h1
           whileHover={{ scale: 1.2, color: 'rgb(255, 255, 255)' }}
@@ -42,7 +42,36 @@ const Home = () => {
           <p>تلفن: 22739844-021</p>
         </div>
       </div>
-      <div className='mt-[calc(100vh_-_70px)]'>
+
+      {/* pics */}
+      <h2 className='font-Morabba-Bold text-xl border-b-2 pb-2 mb-10 mt-[calc(100vh_-_40px)]'>
+        تصاویری از مجوعه فود استور
+      </h2>
+      <div className='w-full  flex flex-wrap justify-center gap-10'>
+        <img
+          src='/Restaurant-Background-Graphics.jpg'
+          className='w-[400px] h-[400px] object-cover rounded-xl'
+          alt=''
+        />
+        <img
+          src='/restaurant-background.jpg'
+          className='w-[700px] h-[400px] object-cover rounded-xl'
+          alt=''
+        />{' '}
+        <img
+          src='/resturant-lights-wood-table.jpg'
+          className='w-[500px] h-[400px] object-cover rounded-xl'
+          alt=''
+        />{' '}
+        <img
+          src='/animated-restaurant.jpg'
+          className='w-[600px] h-[400px] object-cover rounded-xl'
+          alt=''
+        />
+      </div>
+
+      {/* سوالات متداول */}
+      <div className='mt-24'>
         <h2 className='font-Morabba-Bold text-xl border-b-2 pb-2 mb-10'>
           سوالات متداول
         </h2>
