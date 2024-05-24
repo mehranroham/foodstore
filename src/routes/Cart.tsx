@@ -4,6 +4,7 @@ import Modal from '../components/ui/Modal';
 import { useSelector, useDispatch } from 'react-redux';
 import { shopActions } from '../store/shop';
 import { X } from 'lucide-react';
+import { priceFormatter } from '../utils/priceformatter';
 
 export default function Cart() {
   const dispatch = useDispatch();
@@ -19,6 +20,14 @@ export default function Cart() {
   const removeHandler = (id) => {
     dispatch(shopActions.removeFromCart(id));
   };
+
+  let totalPrice = 0;
+
+  if (orders.length) {
+    totalPrice = orders.reduce((prev, curr) => {
+      return prev + curr.price * curr.quantity;
+    }, 0);
+  }
 
   return (
     <Modal>
@@ -37,7 +46,10 @@ export default function Cart() {
                   <p className='w-[10px]'>{index + 1}:</p>
                   <p className='w-[250px]'>{order.name}</p>
                   <p className='font-Dana-Medium w-[100px] text-right'>
-                    {order.price}
+                    {new Intl.NumberFormat('fa', {
+                      currency: 'IRR',
+                      style: 'currency',
+                    }).format(order.price)}
                   </p>
 
                   <div
@@ -62,6 +74,12 @@ export default function Cart() {
               );
             })}
           </ul>
+          <p
+            dir='rtl'
+            className='font-Morabba-Medium border-t border-black pt-2 text-lg'
+          >
+            مجموع: {priceFormatter(totalPrice)}
+          </p>
           <div dir='rtl' className='flex gap-5 items-center'>
             <Link to='/shop'>
               <Button>ادامه خرید</Button>

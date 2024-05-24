@@ -19,6 +19,15 @@ const recipeReducer = createSlice({
         { id, name: action.payload.name, recipe: action.payload.recipe },
       ];
     },
+    editRecipe(state, action) {
+      const otherRecipes = state.recipes.filter((item) => {
+        return item.id !== action.payload.id;
+      });
+      state.recipes = [
+        ...otherRecipes,
+        { id: action.payload.id, ...action.payload.data },
+      ];
+    },
   },
 });
 

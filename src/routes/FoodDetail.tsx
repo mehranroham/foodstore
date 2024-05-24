@@ -1,8 +1,10 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { FOODS } from '../data/Foods';
 import Button from '../components/ui/Button';
 import { useDispatch } from 'react-redux';
 import { shopActions } from '../store/shop';
+import { useEffect } from 'react';
+import { priceFormatter } from '../utils/priceformatter';
 
 const FoodDetail = () => {
   const { foodId } = useParams();
@@ -11,10 +13,14 @@ const FoodDetail = () => {
     return food.id === +foodId!;
   });
 
-  const price = new Intl.NumberFormat('fa', {
-    currency: 'IRR',
-    style: 'currency',
-  }).format(selectedFood!.price * Math.floor(Math.random() * 10 + 10));
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!selectedFood) {
+      navigate('/shop');
+      console.log('ddd');
+    }
+  }, []);
 
   const dispatch = useDispatch();
 
@@ -24,25 +30,31 @@ const FoodDetail = () => {
   };
 
   return (
-    <div className='grid grid-cols-2'>
-      <div className='flex flex-col gap-8  justify-center px-5'>
-        <p className='font-Poppins-Medium text-2xl'>
-          {selectedFood?.name.replace('-', ' ').toUpperCase()}
-        </p>
-        <p className='text-lg'>{selectedFood?.description}</p>
-        <p className='text-lg text-center'>{price}</p>
-        <Button onClick={(e) => addToCartHandler(e, selectedFood?.id)}>
-          افزودن به سبد خرید
-        </Button>
-      </div>
-      <div className='w-full h-[500px] px-5'>
-        <img
-          className='object-cover w-full h-full rounded-xl'
-          src={selectedFood?.src}
-          alt={selectedFood?.name}
-        />
-      </div>
-    </div>
+    <>
+      {selectedFood && (
+        <div className='grid grid-cols-2'>
+          <div className='flex flex-col gap-8  justify-center px-5'>
+            <p className='font-Poppins-Medium text-2xl'>
+              {selectedFood?.name.replace('-', ' ').toUpperCase()}
+            </p>
+            <p className='text-lg'>{selectedFood?.description}</p>
+            <p className='text-lg text-center'>
+              {priceFormatter(selectedFood!.price)}
+            </p>
+            <Button onClick={(e) => addToCartHandler(e, selectedFood?.id)}>
+              افزودن به سبد خرید
+            </Button>
+          </div>
+          <div className='w-full h-[500px] px-5'>
+            <img
+              className='object-cover w-full h-full rounded-xl'
+              src={selectedFood?.src}
+              alt={selectedFood?.name}
+            />
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

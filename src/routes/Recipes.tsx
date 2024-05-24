@@ -23,7 +23,7 @@ const Recipes = () => {
             <li key={item.id}>
               <Link className='flex flex-col gap-4' to={`/recipes/${item.id}`}>
                 <p className='font-Morabba-Bold text-xl'>{item.name}</p>
-                <p>{item.recipe}</p>
+                <p className='whitespace-pre-wrap'>{item.recipe}</p>
               </Link>
             </li>
           );

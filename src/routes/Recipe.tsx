@@ -1,8 +1,9 @@
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 // state type
 import { combineReducers } from '@reduxjs/toolkit';
+import Button from '../components/ui/Button';
 const rootReducer = combineReducers({});
 export type IRootState = ReturnType<typeof rootReducer>;
 
@@ -19,8 +20,11 @@ const Recipe = () => {
 
   return (
     <div className='flex flex-col gap-8'>
-      <p className='text-2xl font-Morabba-Bold bg-init-4 py-1.5 px-4 text-stone-900 rounded-xl'>
-        {selected.name}
+      <p className='text-2xl font-Morabba-Bold bg-init-4 py-2 px-5 text-stone-900 rounded-lg flex justify-between items-center'>
+        <span> {selected.name}</span>
+        <Link to={`/recipes/edit/${selected.id}`}>
+          <Button>ویرایش</Button>
+        </Link>
       </p>
       <img
         className='w-[400px] h-[300px] object-cover rounded-xl mx-auto'

@@ -1,4 +1,6 @@
 import { MouseEventHandler } from 'react';
+import { motion } from 'framer-motion';
+import { Scale } from 'lucide-react';
 
 interface Props {
   children?: React.ReactNode;
@@ -16,9 +18,14 @@ const Button = ({ children, className: classname, onClick }: Props) => {
   }
 
   return (
-    <button onClick={onClick} className={classes}>
+    <motion.button
+      whileHover={{ scale: 1.1, backgroundColor: 'rgb(0, 41, 107)' }}
+      transition={{ duration: 1 }}
+      onClick={onClick}
+      className={classes}
+    >
       {children}
-    </button>
+    </motion.button>
   );
 };
 

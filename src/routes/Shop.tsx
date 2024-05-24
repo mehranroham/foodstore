@@ -14,6 +14,7 @@ const Shop = () => {
           return <Food key={food.id} food={food} />;
         })}
       </ul>
+
       <Outlet />
     </>
   );

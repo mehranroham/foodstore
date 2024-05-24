@@ -5,10 +5,12 @@ import Shop from './routes/Shop';
 import FoodDetail from './routes/FoodDetail';
 import Recipes from './routes/Recipes';
 import NewRecipe from './routes/NewRecipe';
-import Recipe from './components/Recipe';
+import Recipe from './routes/Recipe';
 import Cart from './routes/Cart';
 import Contact from './routes/Contact';
 import About from './routes/About';
+import Panel from './routes/Panel';
+import EditRecipe from './routes/EditRecipe';
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +29,8 @@ export const router = createBrowserRouter([
       { path: 'recipes', element: <Recipes /> },
       { path: 'recipes/:recipeId', element: <Recipe /> },
       { path: 'recipes/new', element: <NewRecipe /> },
+      { path: 'recipes/edit/:recipeId', element: <EditRecipe /> },
+      { path: 'panel', element: <Panel /> },
       { path: 'contact', element: <Contact /> },
       { path: 'about', element: <About /> },
       { path: '/*', element: <Home /> },

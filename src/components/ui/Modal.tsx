@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 export default function Modal({ children, free = false }) {
   const navigate = useNavigate();
@@ -18,7 +19,10 @@ export default function Modal({ children, free = false }) {
   };
 
   return createPortal(
-    <dialog
+    <motion.dialog
+      initial={{ opacity: 0, translateY: -20 }}
+      animate={{ opacity: 1, translateY: 0 }}
+      transition={{ duration: 1 }}
       onClick={clickHandler}
       ref={dialog}
       className='backdrop:bg-black/85 rounded-lg'
@@ -32,7 +36,7 @@ export default function Modal({ children, free = false }) {
       >
         {children}
       </div>
-    </dialog>,
+    </motion.dialog>,
     document.querySelector('#modal')
   );
 }

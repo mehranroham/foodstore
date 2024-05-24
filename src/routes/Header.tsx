@@ -1,4 +1,10 @@
-import { CircleUser, LogOutIcon, ShoppingBag } from 'lucide-react';
+import {
+  CircleUser,
+  CookingPot,
+  LogOutIcon,
+  ShoppingBag,
+  ShoppingCart,
+} from 'lucide-react';
 import { useKindeAuth } from '@kinde-oss/kinde-auth-react';
 import { Link } from 'react-router-dom';
 import Button from '../components/ui/Button';
@@ -34,17 +40,10 @@ const Header = () => {
   }
 
   return (
-    <nav className='sticky w-full h-[70px] px-16 bg-init-4 text-stone-900 grid grid-cols-3 font-Morabba-Medium text-lg top-0 right-0 shadow-xl z-10'>
+    <nav className='sticky w-full h-[70px] px-16 bg-init-4 text-stone-900 grid grid-cols-4 font-Morabba-Medium text-lg top-0 right-0 shadow-xl z-20'>
       {isLoading && <p className='flex items-center'>در حال بارگذاری...</p>}
       {!isLoading && isAuthenticated && (
         <ul className='flex gap-4 items-center'>
-          {isAdmin && (
-            <li>
-              <Button className='text-lg py-1 px-2 border-2 border-init-1'>
-                پنل ادمین
-              </Button>
-            </li>
-          )}
           <li className='cursor-pointer flex items-center gap-2'>
             <LogOutIcon size={30} />
             <button onClick={logout} type='button'>
@@ -53,7 +52,9 @@ const Header = () => {
           </li>
           <span className='w-px h-8 bg-stone-700'></span>
           <li className='cursor-pointer'>
-            <button type='button'>سلام {user?.given_name}</button>
+            <Link to='panel' type='button'>
+              سلام {user?.given_name}
+            </Link>
           </li>
         </ul>
       )}
@@ -75,25 +76,35 @@ const Header = () => {
         </ul>
       )}
 
-      <ul className='flex gap-4 items-center justify-center *:cursor-pointer'>
+      <ul className='flex gap-6 col-span-2 items-center justify-center *:cursor-pointer'>
         <li>
           <Link to='/'>صفحه اصلی</Link>
         </li>
         <li>
-          <Link to='/shop'>فروشگاه</Link>
+          <Link className='flex items-center gap-1' to='/shop'>
+            <p>فروشگاه</p>
+            <ShoppingCart size={27} />
+          </Link>
         </li>
         <li>
-          <Link to='/blog'>بلاگ</Link>
-        </li>
-        <li>
-          <Link to='/recipes'>دستور پخت</Link>
+          <Link className='flex items-center gap-1' to='/recipes'>
+            <p>دستور پخت</p>
+            <CookingPot className='mb-0.5' size={27} />
+          </Link>
         </li>
         <li>
           <Link to='/about'>درباره</Link>
         </li>
         <li>
-          <Link to='/contact'>تماس</Link>
+          <Link to='/contact'>تماس با ما</Link>
         </li>
+        {isAdmin && (
+          <li>
+            <Button className='text-lg py-1 px-2 border-2 border-init-1'>
+              پنل ادمین
+            </Button>
+          </li>
+        )}
       </ul>
 
       <div className='relative flex items-center gap-4 justify-end'>

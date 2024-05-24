@@ -1,29 +1,30 @@
-import { useDispatch } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
 import Button from '../components/ui/Button';
+import { useDispatch, useSelector } from 'react-redux';
 import { recipeActions } from '../store/recipes';
-import { useNavigate } from 'react-router-dom';
 import { useKindeAuth } from '@kinde-oss/kinde-auth-react';
 
-const NewRecipe = () => {
-  const navigate = useNavigate();
-
+const EditRecipe = () => {
   const { isAuthenticated, isLoading, login, register } = useKindeAuth();
 
-  interface FormElements extends HTMLFormControlsCollection {
-    yourInputName: HTMLInputElement;
-  }
+  const { recipeId } = useParams();
 
-  interface YourFormElement extends HTMLFormElement {
-    readonly elements: FormElements;
-  }
+  const recipes = useSelector((state) => {
+    return state.recipe.recipes;
+  });
 
+  const selected = recipes.find((item) => {
+    return item.id === +recipeId!;
+  });
+
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const submitHandler = (event: React.FormEvent<YourFormElement>) => {
+  const submitHandler = (event) => {
     event.preventDefault();
     const fd = new FormData(event.currentTarget);
     const data = Object.fromEntries(fd.entries());
-    dispatch(recipeActions.addRecepi(data));
+    dispatch(recipeActions.editRecipe({ data, id: +recipeId! }));
     navigate('/recipes');
   };
 
@@ -48,6 +49,7 @@ const NewRecipe = () => {
               <input
                 className='outline-none p-2 text-stone-900 rounded-md'
                 required
+                defaultValue={selected.name}
                 type='text'
                 id='name'
                 name='name'
@@ -56,14 +58,15 @@ const NewRecipe = () => {
             <div className='flex flex-col gap-2'>
               <label htmlFor='recipe'>دستور پخت</label>
               <textarea
-                className='outline-none p-2 text-stone-900 rounded-md h-[300px] whitespace-pre-wrap'
+                defaultValue={selected.recipe}
+                className='outline-none p-2 text-stone-900 rounded-md h-[300px]'
                 wrap='true'
                 required
                 name='recipe'
                 id='recipe'
               ></textarea>
             </div>
-            <Button>افزودن</Button>
+            <Button>ویرایش</Button>
           </form>
         </div>
       )}
@@ -71,4 +74,4 @@ const NewRecipe = () => {
   );
 };
 
-export default NewRecipe;
+export default EditRecipe;

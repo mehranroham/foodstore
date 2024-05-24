@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import Button from './ui/Button';
 import { useDispatch } from 'react-redux';
 import { shopActions } from '../store/shop';
+import { priceFormatter } from '../utils/priceformatter';
 
 const Food = ({
   food,
@@ -16,10 +17,7 @@ const Food = ({
   };
 }) => {
   const name = food.name.replace('-', ' ').toUpperCase();
-  const price = new Intl.NumberFormat('fa', {
-    currency: 'IRR',
-    style: 'currency',
-  }).format(food.price * Math.floor(Math.random() * 10 + 10));
+  const price = priceFormatter(food.price);
 
   const dispatch = useDispatch();
 
