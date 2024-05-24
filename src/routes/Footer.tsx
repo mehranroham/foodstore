@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <footer className='font-Morabba-Medium'>
-      <div className=' grid grid-cols-3 gap-10 bg-init-1 min-h-[345px] pt-9 pb-3 px-20'>
+      <div className=' grid grid-cols-3 gap-10 bg-init-1 min-h-[345px] pt-9 pb-3 lg:px-20 md:px-10 px-5'>
         <div className='flex flex-col gap-7 xl:col-span-1 col-span-3'>
           <h4 className='text-gray-100 dark:text-gray-200 border-b-2 border-gray-200 text-xl '>
             درباره ما

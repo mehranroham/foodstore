@@ -36,13 +36,13 @@ const Shop = () => {
 
   return (
     <div className='flex flex-col gap-8'>
-      <div className='flex gap-7 items-stretch'>
+      <div className='flex sm:flex-row flex-col gap-7 items-stretch'>
         <motion.input
           whileHover={{ scale: 1.05 }}
           placeholder='search'
           id='searchInput'
           onChange={inputfilterHandler}
-          className='placeholder:font-Poppins-Medium font-Poppins-Medium px-2 py-1.5 rounded-md w-[30%] text-slate-900 outline-none'
+          className='placeholder:font-Poppins-Medium font-Poppins-Medium px-2 py-2 rounded-md sm:w-[30%] w-[80%] text-slate-900 outline-none'
           type='text'
         />
 
@@ -87,7 +87,7 @@ const Shop = () => {
       </div>
 
       <Button onClick={clickHandler}>جستجو</Button>
-      <ul className='grid grid-cols-4 gap-x-5 gap-y-7'>
+      <ul className='grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-x-5 gap-y-7'>
         {filtredData.map((food) => {
           return <Food key={food.id} food={food} />;
         })}

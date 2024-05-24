@@ -1,37 +1,48 @@
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import Accordion from '../components/Accordion';
 
 const Home = () => {
-  const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.4 });
-
-  if (isInView) {
-    console.log('yes');
-  }
-
   return (
     <div className='w-full'>
-      <div className='absolute top-[70px] inset-x-0 w-full h-[calc(100vh_-_70px)] bg-gradient-to-br from-purple-500 to-purple-950 flex flex-col gap-24 items-center justify-center font-Morabba-Bold text-stone-900'>
+      <div
+        className='absolute lg:top-[70px] top-[60px] inset-x-0 w-full lg:h-[calc(100vh_-_70px)]
+      h-[calc(100vh_-_60px)]  bg-gradient-to-br from-init-3 to-init-1 flex flex-col gap-24 items-center justify-center font-Morabba-Bold text-stone-900 px-5 '
+      >
         <motion.h1
           whileHover={{ scale: 1.2, color: 'rgb(255, 255, 255)' }}
           transition={{ duration: 2 }}
-          className='text-5xl cursor-pointer'
+          className='text-5xl cursor-pointer text-center leading-[70px]'
         >
           بهترین رستوران{' '}
-          <span className='bg-yellow-500  px-2 py-1 rounded-xl'>ایرانی</span> در
-          دنیا
+          <motion.span
+            whileHover={{ backgroundColor: '#121210' }}
+            transition={{ duration: 2 }}
+            className='bg-yellow-500  px-2 py-1 rounded-xl'
+          >
+            ایرانی
+          </motion.span>{' '}
+          در دنیا
         </motion.h1>
-        <p className='text-2xl text-stone-200'>
+        <motion.p
+          whileInView={{ x: [20, -200, 200, -40, 0], y: [30, -40, 0] }}
+          transition={{ duration: 4 }}
+          className='text-2xl text-stone-200 md:block hidden'
+        >
           بهترین مزه ای که تجربه می کنید...
-        </p>
-        <div className='text-lg text-stone-200 flex gap-10'>
+        </motion.p>
+        <motion.p
+          whileInView={{ x: [4, -20, 30, -10, 0], y: [30, -40, 0] }}
+          transition={{ duration: 4 }}
+          className=' sm:text-2xl text-xl text-stone-200 block md:hidden'
+        >
+          بهترین مزه ای که تجربه می کنید...
+        </motion.p>
+        <div className='text-lg text-stone-200 flex sm:flex-row flex-col  gap-10'>
           <p>آدرس: تجریش، ضلع شمال شرقی، پلاک 115</p>
           <p>تلفن: 22739844-021</p>
         </div>
       </div>
-      <div ref={containerRef} className='mt-[calc(100vh_-_70px)]'>
+      <div className='mt-[calc(100vh_-_70px)]'>
         <h2 className='font-Morabba-Bold text-xl border-b-2 pb-2 mb-10'>
           سوالات متداول
         </h2>

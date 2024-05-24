@@ -65,7 +65,7 @@ export default function Contact() {
       </div>
       <img
         src='/logo.jpg'
-        className='md:w-[70%] h-[400px] my-10 object-cover rounded-lg lg:col-span-1 col-span-2 w-[90%] mr-auto'
+        className='md:w-[70%] h-[400px] my-10 object-cover rounded-lg lg:col-span-1 col-span-2 w-[90%] lg:mr-auto mx-auto'
         alt=''
       />
     </div>

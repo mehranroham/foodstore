@@ -25,7 +25,7 @@ export default function About() {
       </div>
       <img
         src='/logo.jpg'
-        className='sm:w-[80%] h-[450px] my-5 object-cover rounded-lg lg:col-span-1 col-span-2 w-[90%] mr-auto'
+        className='sm:w-[80%] h-[450px] my-5 object-cover rounded-lg lg:col-span-1 col-span-2 w-[90%] lg:mr-auto mx-auto'
         alt=''
       />
     </div>

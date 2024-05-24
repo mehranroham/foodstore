@@ -13,7 +13,6 @@ const shopReducer = createSlice({
   reducers: {
     addToCart(state, action) {
       const addedFood = state.orders.find((order) => {
-        console.log(order.id);
         return order.id === action.payload;
       });
 

@@ -23,23 +23,23 @@ const Panel = () => {
             پنل کاربری
           </h2>
           <ul className='flex flex-col gap-7'>
-            <li className='flex items-center gap-5'>
+            <li className='flex items-center gap-5 flex-wrap'>
               <p>تصویر پروفایل:</p>
-              <img src={user?.picture} alt='profile' />
+              <img src={user?.picture} className='rounded-lg' alt='profile' />
             </li>
-            <li className='flex items-center gap-5'>
+            <li className='flex items-center gap-5 flex-wrap'>
               <p>آی دی:</p>
               <p>{user?.id}</p>
             </li>
-            <li className='flex items-center gap-5'>
+            <li className='flex items-center gap-5 flex-wrap'>
               <p>ایمیل:</p>
               <p>{user?.email}</p>
             </li>
-            <li className='flex items-center gap-5'>
+            <li className='flex items-center gap-5 flex-wrap'>
               <p>نام:</p>
               <p>{user?.given_name}</p>
             </li>
-            <li className='flex items-center gap-5'>
+            <li className='flex items-center gap-5 flex-wrap'>
               <p>نام خانوادگی:</p>
               <p>{user?.family_name}</p>
             </li>
