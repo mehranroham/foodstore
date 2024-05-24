@@ -41,82 +41,96 @@ const Checkout = () => {
           مشخصات فردی
         </h2>
         <div className='w-full flex gap-4'>
-          <input
+          <motion.input
+            whileHover={{ scale: 1.05 }}
             required
             placeholder='نام'
             defaultValue={user?.given_name ?? ''}
-            className='py-1.5 px-2 rounded-md text-stone-900 placeholder:text-slate-300 w-full'
+            className='outline-none py-1.5 px-2 rounded-md text-stone-900 placeholder:text-slate-300 w-full'
             type='text'
             name='name'
           />
-          <input
+          <motion.input
+            whileHover={{ scale: 1.05 }}
             required
             placeholder='نام خانوادگی'
             defaultValue={user?.family_name ?? ''}
-            className='py-1.5 px-2 rounded-md text-stone-900 placeholder:text-slate-300 w-full'
+            className='outline-none py-1.5 px-2 rounded-md text-stone-900 placeholder:text-slate-300 w-full'
             type='text'
             name='family'
           />
         </div>
 
         <div className='w-full flex gap-4'>
-          <input
+          <motion.input
+            whileHover={{ scale: 1.05 }}
             required
             placeholder='ایمیل'
             defaultValue={user?.email ?? ''}
-            className='py-1.5 px-2 rounded-md text-stone-900 placeholder:text-slate-300 w-full'
+            className='outline-none py-1.5 px-2 rounded-md text-stone-900 placeholder:text-slate-300 w-full'
             type='email'
             name='email'
           />
-          <input
+          <motion.input
+            whileHover={{ scale: 1.05 }}
             required
             placeholder='کد پستی'
-            className='py-1.5 px-2 rounded-md text-stone-900 placeholder:text-slate-300 w-full lg:w-auto'
+            className='outline-none py-1.5 px-2 rounded-md text-stone-900 placeholder:text-slate-300 w-full lg:w-auto'
             type='text'
             name='postal'
           />
         </div>
-        <textarea
-          className='py-1.5 px-2 rounded-md text-stone-900 placeholder:text-slate-300'
+        <motion.textarea
+          whileHover={{ scale: 1.05 }}
+          className='outline-none py-1.5 px-2 rounded-md text-stone-900 placeholder:text-slate-300'
           placeholder='آدرس'
           name='address'
           id='address'
-        ></textarea>
+        ></motion.textarea>
         <div className='flex gap-8 items-center'>
-          <div className='flex items-center gap-2'>
+          <motion.div
+            whileHover={{ scale: 1.1 }}
+            className='flex items-center gap-2'
+          >
             <label htmlFor='place'>پرداخت در محل</label>
             <input
               required
-              className='scale-150 mt-1.5'
+              className='mt-1.5 scale-125'
               type='radio'
               name='buy'
               id='place'
             />
-          </div>
-          <div className='flex items-center gap-2'>
+          </motion.div>
+          <motion.div
+            whileHover={{ scale: 1.1 }}
+            className='flex items-center gap-2'
+          >
             <label htmlFor='online'>پرداخت اینترنتی</label>
             <input
               required
-              className='scale-150 mt-1.5'
+              className=' mt-1.5 scale-125'
               type='radio'
               name='buy'
               id='online'
             />
-          </div>
+          </motion.div>
         </div>
         <p>درگاه اینترنتی</p>
         <div className='flex items-center gap-7'>
-          <img
+          <motion.img
+            whileHover={{ scale: 1.2 }}
             src='/bank/AsanPardakht.png'
             className='sm:w-20 sm:h-20 w-16 h-16 rounded-full object-contain border-2 border-init-4 p-1 cursor-pointer'
             alt='AsanPardakht'
           />
-          <img
+          <motion.img
+            whileHover={{ scale: 1.2 }}
             src='/bank/melat.png'
             className='sm:w-20 sm:h-20 w-16 h-16 rounded-full object-contain border-2 border-init-4 p-1 cursor-pointer'
             alt='AsanPardakht'
           />
-          <img
+          <motion.img
+            whileHover={{ scale: 1.2 }}
             src='/bank/parsian.svg'
             className='sm:w-20 sm:h-20 w-16 h-16 rounded-full object-contain border-2 border-init-4 p-1 cursor-pointer'
             alt='AsanPardakht'

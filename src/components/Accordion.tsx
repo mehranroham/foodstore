@@ -28,7 +28,7 @@ const Accordion = ({
       <motion.p
         className='overflow-hidden'
         initial={{ height: 0 }}
-        animate={{ height: show ? 'auto' : 2 }}
+        animate={{ height: show ? 'auto' : 0 }}
         transition={{ duration: 0.5 }}
       >
         {description}

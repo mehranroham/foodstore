@@ -32,7 +32,7 @@ const FoodDetail = () => {
   return (
     <>
       {selectedFood && (
-        <div className='grid grid-cols-2'>
+        <div className='grid md:grid-cols-2 grid-cols-1'>
           <div className='flex flex-col gap-8  justify-center px-5'>
             <p className='font-Poppins-Medium text-2xl'>
               {selectedFood?.name.replace('-', ' ').toUpperCase()}
@@ -45,7 +45,7 @@ const FoodDetail = () => {
               افزودن به سبد خرید
             </Button>
           </div>
-          <div className='w-full h-[500px] px-5'>
+          <div className='w-full md:h-[500px] h-[350px] px-5 md:mt-0 mt-16'>
             <img
               className='object-cover w-full h-full rounded-xl'
               src={selectedFood?.src}
