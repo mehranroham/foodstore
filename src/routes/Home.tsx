@@ -48,24 +48,28 @@ const Home = () => {
         تصاویری از مجوعه فود استور
       </h2>
       <div className='w-full  flex flex-wrap justify-center gap-10'>
-        <img
+        <motion.img
+          whileHover={{ scale: 1.03 }}
           src='/Restaurant-Background-Graphics.jpg'
-          className='w-[400px] h-[400px] object-cover rounded-xl'
+          className='w-[400px] h-[400px] cursor-pointer object-cover rounded-xl'
           alt=''
         />
-        <img
+        <motion.img
+          whileHover={{ scale: 1.03 }}
           src='/restaurant-background.jpg'
-          className='w-[700px] h-[400px] object-cover rounded-xl'
+          className='w-[700px] h-[400px] cursor-pointer object-cover rounded-xl'
           alt=''
         />{' '}
-        <img
+        <motion.img
+          whileHover={{ scale: 1.03 }}
           src='/resturant-lights-wood-table.jpg'
-          className='w-[500px] h-[400px] object-cover rounded-xl'
+          className='w-[500px] h-[400px] cursor-pointer object-cover rounded-xl'
           alt=''
         />{' '}
-        <img
+        <motion.img
+          whileHover={{ scale: 1.03 }}
           src='/animated-restaurant.jpg'
-          className='w-[600px] h-[400px] object-cover rounded-xl'
+          className='w-[600px] h-[400px] cursor-pointer object-cover rounded-xl'
           alt=''
         />
       </div>

@@ -5,6 +5,7 @@ import {
   LogOutIcon,
   Menu,
   ShoppingCart,
+  X,
 } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -40,7 +41,8 @@ const MobileMenu = () => {
         onClick={mobileClickHandler}
         className='flex items-center lg:hidden col-span-2'
       >
-        <Menu size={40} />
+        {!showMenu && <Menu size={40} />}
+        {showMenu && <X size={40} />}
       </button>
 
       <motion.ul
@@ -85,7 +87,7 @@ const MobileMenu = () => {
                 className='flex items-center gap-1 font-Poppins-Medium'
               >
                 <img
-                  src={user?.picture}
+                  src={user?.picture ?? undefined}
                   alt='profile'
                   className='w-10 h-10 rounded-full'
                 />

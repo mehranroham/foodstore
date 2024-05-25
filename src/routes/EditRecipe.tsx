@@ -3,13 +3,14 @@ import Button from '../components/ui/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { recipeActions } from '../store/recipes';
 import { useKindeAuth } from '@kinde-oss/kinde-auth-react';
+import { RootState } from '../store';
 
 const EditRecipe = () => {
   const { isAuthenticated, isLoading, login, register } = useKindeAuth();
 
   const { recipeId } = useParams();
 
-  const recipes = useSelector((state) => {
+  const recipes = useSelector((state: RootState) => {
     return state.recipe.recipes;
   });
 
@@ -20,7 +21,7 @@ const EditRecipe = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const submitHandler = (event) => {
+  const submitHandler = (event: React.MouseEvent<HTMLFormElement>) => {
     event.preventDefault();
     const fd = new FormData(event.currentTarget);
     const data = Object.fromEntries(fd.entries());
@@ -49,7 +50,7 @@ const EditRecipe = () => {
               <input
                 className='outline-none p-2 text-stone-900 rounded-md'
                 required
-                defaultValue={selected.name}
+                defaultValue={selected!.name}
                 type='text'
                 id='name'
                 name='name'
@@ -58,7 +59,7 @@ const EditRecipe = () => {
             <div className='flex flex-col gap-2'>
               <label htmlFor='recipe'>دستور پخت</label>
               <textarea
-                defaultValue={selected.recipe}
+                defaultValue={selected!.recipe}
                 className='outline-none p-2 text-stone-900 rounded-md h-[300px]'
                 wrap='true'
                 required

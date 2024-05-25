@@ -18,7 +18,7 @@ const Recipes = () => {
         <Link to='new'>افزودن دستور پخت </Link>
       </Button>
       <ul className='flex flex-col gap-10'>
-        {recipes.map((item) => {
+        {recipes.map((item: { id: number; name: string; recipe: string }) => {
           return (
             <li key={item.id}>
               <Link className='flex flex-col gap-4' to={`/recipes/${item.id}`}>

@@ -5,20 +5,21 @@ import { useState } from 'react';
 import { shopActions } from '../store/shop';
 import Button from '../components/ui/Button';
 import { motion } from 'framer-motion';
+import { RootState } from '../store';
 
 const Shop = () => {
-  const diapatch = useDispatch();
+  const dispatch = useDispatch();
 
   const [filterValues, setFilterValues] = useState({
     searchInput: '',
     category: 'all',
   });
 
-  const filtredData = useSelector((state) => {
+  const filtredData = useSelector((state: RootState) => {
     return state.shop.filtredData;
   });
 
-  const inputfilterHandler = (event) => {
+  const inputFilterHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFilterValues((prev) => {
       return { ...prev, searchInput: event.target.value };
     });
@@ -31,7 +32,7 @@ const Shop = () => {
   };
 
   const clickHandler = () => {
-    diapatch(shopActions.filterHandler(filterValues));
+    dispatch(shopActions.filterHandler(filterValues));
   };
 
   return (
@@ -41,7 +42,7 @@ const Shop = () => {
           whileHover={{ scale: 1.05 }}
           placeholder='search'
           id='searchInput'
-          onChange={inputfilterHandler}
+          onChange={inputFilterHandler}
           className='placeholder:font-Poppins-Medium font-Poppins-Medium px-2 py-2 rounded-md sm:w-[30%] w-[80%] text-slate-900 outline-none'
           type='text'
         />

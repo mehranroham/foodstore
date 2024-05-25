@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import Button from '../components/ui/Button';
 import { useSelector } from 'react-redux';
 import MobileMenu from '../components/MobileMenu';
+import { RootState } from '../store';
 
 const Header = () => {
   const { login, register, logout, user, isLoading, isAuthenticated } =
@@ -28,7 +29,7 @@ const Header = () => {
     login();
   };
 
-  const count = useSelector((state) => {
+  const count = useSelector((state: RootState) => {
     return state.shop.orders;
   });
 
@@ -36,7 +37,7 @@ const Header = () => {
 
   if (count.length) {
     number = count.reduce((prev, curr) => {
-      return prev + curr.quantity;
+      return prev + curr.quantity!;
     }, 0);
   }
 
@@ -59,7 +60,7 @@ const Header = () => {
               className='flex items-center gap-1 font-Poppins-Medium'
             >
               <img
-                src={user?.picture}
+                src={user?.picture ?? undefined}
                 alt='profile'
                 className='w-10 h-10 rounded-full'
               />

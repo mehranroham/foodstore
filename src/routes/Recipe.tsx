@@ -14,7 +14,7 @@ const Recipe = () => {
     return state.recipe.recipes;
   });
 
-  const selected = recipes.find((item) => {
+  const selected = recipes.find((item: { id: number }) => {
     return item.id === +recipeId!;
   });
 

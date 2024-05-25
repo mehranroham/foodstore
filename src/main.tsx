@@ -11,10 +11,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
       <KindeProvider
-        clientId={import.meta.env.VITE_Client_Id}
-        domain={import.meta.env.VITE_Domain}
-        redirectUri={import.meta.env.VITE_Redirect_Uri}
-        logoutUri={import.meta.env.VITE_Logout_Uri}
+        clientId='63896a6ec97b4df78e43f403db93213b'
+        domain='https://foodstore.kinde.com'
+        redirectUri='https://foodstore1.netlify.app'
+        logoutUri='https://foodstore1.netlify.app'
       >
         <RouterProvider router={router} />
       </KindeProvider>

@@ -4,21 +4,22 @@ import { shopActions } from '../store/shop';
 import { priceFormatter } from '../utils/priceformatter';
 import { useKindeAuth } from '@kinde-oss/kinde-auth-react';
 import { motion } from 'framer-motion';
+import { RootState } from '../store';
 
 const Checkout = () => {
   const { user } = useKindeAuth();
 
   const dispatch = useDispatch();
 
-  const orders = useSelector((state) => {
+  const orders = useSelector((state: RootState) => {
     return state.shop.orders;
   });
 
-  const addHandler = (order) => {
-    dispatch(shopActions.addToCart(order));
+  const addHandler = (id: number) => {
+    dispatch(shopActions.addToCart(id));
   };
 
-  const removeHandler = (id) => {
+  const removeHandler = (id: number) => {
     dispatch(shopActions.removeFromCart(id));
   };
 
@@ -26,11 +27,11 @@ const Checkout = () => {
 
   if (orders.length) {
     totalPrice = orders.reduce((prev, curr) => {
-      return prev + curr.price * curr.quantity;
+      return prev + curr.price! * curr.quantity!;
     }, 0);
   }
 
-  const submitHandler = (event) => {
+  const submitHandler = (event: React.MouseEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
 
@@ -166,7 +167,7 @@ const Checkout = () => {
                   {new Intl.NumberFormat('fa', {
                     currency: 'IRR',
                     style: 'currency',
-                  }).format(order.price)}
+                  }).format(order.price!)}
                 </p>
 
                 <div
@@ -174,14 +175,14 @@ const Checkout = () => {
                   className='pl-10 flex items-center gap-3 justify-center'
                 >
                   <Button
-                    onClick={() => addHandler(order.id)}
+                    onClick={() => addHandler(order.id!)}
                     className='bg-init-2 text-stone-200 px-2.5 py-0.5'
                   >
                     +
                   </Button>
                   <p className='w-[10px] text-center'>{order.quantity}</p>
                   <Button
-                    onClick={() => removeHandler(order.id)}
+                    onClick={() => removeHandler(order.id!)}
                     className='bg-init-2 text-stone-200 px-2.5 py-0.5'
                   >
                     -

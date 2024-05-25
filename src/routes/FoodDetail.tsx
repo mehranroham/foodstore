@@ -24,7 +24,10 @@ const FoodDetail = () => {
 
   const dispatch = useDispatch();
 
-  const addToCartHandler = (event, id) => {
+  const addToCartHandler = (
+    event: React.MouseEvent<HTMLButtonElement>,
+    id: number
+  ) => {
     event.preventDefault();
     dispatch(shopActions.addToCart(id));
   };

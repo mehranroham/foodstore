@@ -1,19 +1,29 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-export default function Modal({ children, free = false }) {
+interface ModalProps {
+  children: React.ReactNode;
+  free: boolean;
+}
+
+export default function Modal({ children, free = false }: ModalProps) {
   const navigate = useNavigate();
 
-  const dialog = useRef();
+  const dialog = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
-    dialog.current.showModal();
+    dialog.current?.showModal();
   }, []);
 
-  const clickHandler = (e) => {
-    if (!document.getElementById('inside').contains(e.target)) {
+  const clickHandler = (
+    event: React.MouseEvent<HTMLDialogElement, MouseEvent>
+  ) => {
+    if (
+      document.getElementById('inside') &&
+      !document.getElementById('inside')?.contains(event.target as Node)
+    ) {
       navigate('..');
     }
   };
@@ -31,12 +41,12 @@ export default function Modal({ children, free = false }) {
         dir='ltr'
         className={`w-auto ${
           free ? 'h-auto' : 'max-h-[350px]'
-        }  bg-stone-200 overflow-y-scroll p-8 font-Dana`}
+        } bg-stone-200 overflow-y-scroll p-8 font-Dana`}
         id='inside'
       >
         {children}
       </div>
     </motion.dialog>,
-    document.querySelector('#modal')
+    document.querySelector('#modal')!
   );
 }

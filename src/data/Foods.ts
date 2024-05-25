@@ -5,6 +5,7 @@ interface food {
   description: string;
   price: number;
   quantity: number;
+  category: string;
 }
 
 export const FOODS: food[] = [

@@ -5,19 +5,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import { shopActions } from '../store/shop';
 import { X } from 'lucide-react';
 import { priceFormatter } from '../utils/priceformatter';
+import { RootState } from '../store';
 
 export default function Cart() {
   const dispatch = useDispatch();
 
-  const orders = useSelector((state) => {
+  const orders = useSelector((state: RootState) => {
     return state.shop.orders;
   });
 
-  const addHandler = (order) => {
-    dispatch(shopActions.addToCart(order));
+  const addHandler = (id: number) => {
+    dispatch(shopActions.addToCart(id));
   };
 
-  const removeHandler = (id) => {
+  const removeHandler = (id: number) => {
     dispatch(shopActions.removeFromCart(id));
   };
 
@@ -25,46 +26,40 @@ export default function Cart() {
 
   if (orders.length) {
     totalPrice = orders.reduce((prev, curr) => {
-      return prev + curr.price * curr.quantity;
+      return prev + curr.price! * curr.quantity!;
     }, 0);
   }
 
   return (
-    <Modal>
+    <Modal free>
       {orders.length > 0 && (
         <div className='flex flex-col gap-7'>
-          <p dir='rtl' className='text-lg font-Morabba-Medium text-center'>
-            سفارشات شما:
+          <p className='text-lg font-Morabba-Medium text-center'>
+            Your Orders:
           </p>
-          <ul dir='ltr' className='flex flex-col gap-2 font-Poppins-Medium'>
+          <ul className='flex flex-col gap-2 font-Poppins-Medium'>
             {orders.map((order, index) => {
               return (
                 <li
                   className='flex flex-wrap gap-2 items-center text-lg'
-                  key={order.id}
+                  key={index}
                 >
                   <p className='w-[10px]'>{index + 1}:</p>
                   <p className='w-[250px]'>{order.name}</p>
                   <p className='font-Dana-Medium w-[100px] text-right'>
-                    {new Intl.NumberFormat('fa', {
-                      currency: 'IRR',
-                      style: 'currency',
-                    }).format(order.price)}
+                    {priceFormatter(order.price!)}
                   </p>
 
-                  <div
-                    dir='rtl'
-                    className='pl-10 flex items-center gap-3 justify-center'
-                  >
+                  <div className='pl-10 flex items-center gap-3 justify-center'>
                     <Button
-                      onClick={() => addHandler(order.id)}
+                      onClick={() => addHandler(order.id!)}
                       className='bg-init-2 text-stone-200 px-2.5 py-0.5'
                     >
                       +
                     </Button>
                     <p className='w-[10px] text-center'>{order.quantity}</p>
                     <Button
-                      onClick={() => removeHandler(order.id)}
+                      onClick={() => removeHandler(order.id!)}
                       className='bg-init-2 text-stone-200 px-2.5 py-0.5'
                     >
                       -
@@ -80,24 +75,22 @@ export default function Cart() {
           >
             مجموع: {priceFormatter(totalPrice)}
           </p>
-          <div dir='rtl' className='flex gap-5 items-center'>
+          <div className='flex gap-5 items-center'>
             <Link to='/shop'>
               <Button>ادامه خرید</Button>
             </Link>
             <Link to='/checkout'>
-              <Button>تسویه حساب</Button>
+              <Button>صفحه پرداخت</Button>
             </Link>
           </div>
         </div>
       )}
       {!orders.length && (
         <div className='flex flex-col gap-5 font-Dana-Medium'>
-          <p dir='rtl' className='mt-3'>
-            سبد خرید شما خالی است...
-          </p>
+          <p dir='rtl'>سبد خرید خالی است...</p>
           <div className='flex gap-5 items-center'>
             <Link to='/'>
-              <Button>صفحه اصلی</Button>
+              <Button>خانه</Button>
             </Link>
             <Link to='/shop'>
               <Button>فروشگاه</Button>

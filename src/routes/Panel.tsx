@@ -25,7 +25,11 @@ const Panel = () => {
           <ul className='flex flex-col gap-7'>
             <li className='flex items-center gap-5 flex-wrap'>
               <p>تصویر پروفایل:</p>
-              <img src={user?.picture} className='rounded-lg' alt='profile' />
+              <img
+                src={user?.picture ?? undefined}
+                className='rounded-lg'
+                alt='profile'
+              />
             </li>
             <li className='flex items-center gap-5 flex-wrap'>
               <p>آی دی:</p>

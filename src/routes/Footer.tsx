@@ -38,7 +38,7 @@ const Footer = () => {
         <div className='flex flex-col justify-center gap-8 items-center md:col-span-1 col-span-3'>
           <img
             className='object-cover h-[170px] rounded-lg'
-            src='../../public/logo.jpg'
+            src='/logo.jpg'
             alt='logo'
           />
         </div>

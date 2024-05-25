@@ -1,7 +1,23 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { FOODS } from '../data/Foods';
 
-const initialState = {
+interface Food {
+  id?: number;
+  name?: string;
+  src?: string;
+  description?: string;
+  price?: number;
+  quantity?: number;
+  category?: string;
+}
+
+interface State {
+  foods: Food[];
+  filtredData: Food[];
+  orders: Food[];
+}
+
+const initialState: State = {
   foods: FOODS,
   filtredData: FOODS,
   orders: [],
@@ -11,50 +27,46 @@ const shopReducer = createSlice({
   name: 'shop',
   initialState,
   reducers: {
-    addToCart(state, action) {
-      const addedFood = state.orders.find((order) => {
-        return order.id === action.payload;
-      });
-
-      const selectedFood = state.foods.find((food) => {
-        return food.id === action.payload;
-      });
+    addToCart(state, action: PayloadAction<number>) {
+      const addedFood = state.orders.find(
+        (order) => order.id === action.payload
+      );
+      const selectedFood = state.foods.find(
+        (food) => food.id === action.payload
+      );
 
       if (addedFood) {
-        addedFood.quantity++;
+        addedFood.quantity!++;
       } else {
-        state.orders.push(selectedFood);
+        state.orders.push({ ...selectedFood, quantity: 1 });
       }
     },
-    removeFromCart(state, action) {
-      const removedFood = state.orders.find((order) => {
-        return order.id === action.payload;
-      });
+    removeFromCart(state, action: PayloadAction<number>) {
+      const removedFoodIndex = state.orders.findIndex(
+        (order) => order.id === action.payload
+      );
 
-      const newOrders = state.orders.filter((order) => {
-        return order.id != action.payload;
-      });
-
-      if (removedFood && removedFood.quantity > 1) {
-        removedFood.quantity--;
-      } else {
-        state.orders = newOrders;
+      if (removedFoodIndex !== -1) {
+        const removedFood = state.orders[removedFoodIndex];
+        if (removedFood.quantity && removedFood.quantity > 1) {
+          removedFood.quantity--;
+        } else {
+          state.orders.splice(removedFoodIndex, 1);
+        }
       }
     },
-    filterHandler(state, action) {
-      const filteredFoods = state.foods
-        .filter((food) => {
-          return food.name
-            .toLocaleLowerCase()
-            .includes(action.payload.searchInput.toLocaleLowerCase());
-        })
-        .filter((food) => {
-          if (action.payload.category === 'all') {
-            return food;
-          } else {
-            return food.category === action.payload.category;
-          }
-        });
+    filterHandler(
+      state,
+      action: PayloadAction<{ searchInput: string; category: string }>
+    ) {
+      const filteredFoods = state.foods.filter(
+        (food) =>
+          food
+            .name!.toLowerCase()
+            .includes(action.payload.searchInput.toLowerCase()) &&
+          (action.payload.category === 'all' ||
+            food.category === action.payload.category)
+      );
 
       state.filtredData = filteredFoods;
     },
@@ -62,5 +74,4 @@ const shopReducer = createSlice({
 });
 
 export const shopActions = shopReducer.actions;
-
 export default shopReducer.reducer;

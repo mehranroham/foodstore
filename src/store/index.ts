@@ -8,3 +8,12 @@ const store = configureStore({
 });
 
 export default store;
+
+import { combineReducers } from 'redux';
+
+const rootReducer = combineReducers({
+  shop: shopReducer,
+  recipe: recipeReducer,
+});
+
+export type RootState = ReturnType<typeof rootReducer>;
